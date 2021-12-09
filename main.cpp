@@ -14,47 +14,90 @@ void drawCircle(double x,double y,double radious,float r,float g,float b) {
 float x2,y2;
 float angle;
 double radius=radious;
-
-
-
 glColor3f(r, g, b);
-
-
-
 glBegin(GL_POLYGON);
 glVertex2f(x,y);
 
-
-
-for (angle=1.0f;angle<361.0f;angle+=0.2)
-{
-x2 = x+sin(angle)*radius;
-y2 = y+cos(angle)*radius;
-//glScalef(0.3f,0.3f,0.0f);
-glVertex2f(x2,y2);
-}
-
-
-
-glEnd();
+    for (angle=1.0f;angle<361.0f;angle+=0.2)
+    {
+    x2 = x+sin(angle)*radius;
+    y2 = y+cos(angle)*radius;
+    //glScalef(0.3f,0.3f,0.0f);
+    glVertex2f(x2,y2);
+    }
+    glEnd();
 }
 
 void display() {
 
    glClear(GL_COLOR_BUFFER_BIT);
-
-
    glLoadIdentity();
 
-
+   //Rocket bottom
    glTranslatef(0.0f, -0.9f, 0.0f);
    glBegin(GL_QUADS);
       glColor3f(1.0f, 1.0f, 0.0f);
-
       glVertex2f(-0.08f, 0.0f);
       glVertex2f(0.08f, 0.08f);
       glVertex2f(0.08f, 0.0f);
       glVertex2f(-0.08f, 0.08f);
+   glEnd();
+   //Rocket bottom square
+   glLoadIdentity();
+   glTranslatef(0.0f, -0.81f, 0.0f);
+   glBegin(GL_QUADS);
+      glColor3f(1.0f, 1.0f, 1.0f);
+      glVertex2f(-0.09f, 0.0f);
+      glVertex2f(0.09f, 0.0f);
+      glVertex2f(0.09f, 0.21f);
+      glVertex2f(-0.09f, 0.21f);
+   glEnd();
+   //Rocket bottom propaler left
+   glLoadIdentity();
+   glTranslatef(0.0f, -0.78f, 0.0f);
+   glBegin(GL_TRIANGLES);
+      glColor3f(1.0f, 0.0f, 0.0f);
+      glVertex2f(-0.09f, 0.0f);
+      glVertex2f(-0.09f, 0.15f);
+      glVertex2f(-0.15f, -0.03f);
+   glEnd();
+   //Rocket bottom propaler right
+   glLoadIdentity();
+   glTranslatef(0.0f, -0.78f, 0.0f);
+   glBegin(GL_TRIANGLES);
+      glColor3f(1.0f, 0.0f, 0.0f);
+      glVertex2f(0.09f, 0.0f);
+      glVertex2f(0.09f, 0.15f);
+      glVertex2f(0.15f, -0.03f);
+   glEnd();
+   //Rocket Upper square
+   glLoadIdentity();
+   glTranslatef(0.0f, -0.59f, 0.0f);
+   glBegin(GL_QUADS);
+      glColor3f(1.0f, 1.0f, 1.0f);
+      glVertex2f(-0.09f, 0.0f);
+      glVertex2f(0.09f, 0.0f);
+      glVertex2f(0.09f, 0.25f);
+      glVertex2f(-0.09f, 0.25f);
+   glEnd();
+   //Rocket Upper square
+   glLoadIdentity();
+   glTranslatef(0.0f, -0.59f, 0.0f);
+   glBegin(GL_QUADS);
+      glColor3f(1.0f, 0.0f, 1.0f);
+      glVertex2f(-0.02f, 0.07f);
+      glVertex2f(0.02f, 0.07f);
+      glVertex2f(0.02f, 0.14f);
+      glVertex2f(-0.02f, 0.14f);
+   glEnd();
+   //Rocket Upper Triangle
+   glLoadIdentity();
+   glTranslatef(0.0f, -0.35f, 0.0f);
+   glBegin(GL_TRIANGLES);
+      glColor3f(1.0f, 0.0f, 0.0f);
+      glVertex2f(-0.12f, 0.0f);
+      glVertex2f(0.12f, 0.0f);
+      glVertex2f(0.0f, 0.2f);
    glEnd();
 
    glLoadIdentity();
