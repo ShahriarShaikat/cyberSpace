@@ -62,17 +62,11 @@ void display() {
    drawCircle(0.0,0.5,0.2,1.0,0.0,0.0);
    drawCircle(0.2,0.4,0.2,1.0,0.0,0.0);
 
-
-
-
-
-
-
    //glLoadIdentity();
    glFlush();
 }
 
-
+//shovon
 
 int main(int argc, char** argv) {
 
