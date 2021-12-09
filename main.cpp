@@ -44,25 +44,20 @@ void display() {
    glClear(GL_COLOR_BUFFER_BIT);
 
 
-   //glLoadIdentity();
+   glLoadIdentity();
 
 
-   //glTranslatef(0.0f, -0.9f, 0.0f);
+   glTranslatef(0.0f, -0.9f, 0.0f);
    glBegin(GL_QUADS);
+      glColor3f(1.0f, 1.0f, 0.0f);
 
-      glColor3f(1.0f, 1.0f, 1.0f);
-
-      glVertex2f(-0.1f, 0.1f);//A
-      glVertex2f(0.1f, 0.1f);//B
-      glVertex2f(0.1f, -0.1f);//D
-      glVertex2f(-0.1f, -0.1f);//C
-
+      glVertex2f(-0.08f, 0.0f);
+      glVertex2f(0.08f, 0.08f);
+      glVertex2f(0.08f, 0.0f);
+      glVertex2f(-0.08f, 0.08f);
    glEnd();
-   drawCircle(0.0,0.2,0.2,1.0,0.0,0.0);
-   drawCircle(0.0,0.5,0.2,1.0,0.0,0.0);
-   drawCircle(0.2,0.4,0.2,1.0,0.0,0.0);
 
-   //glLoadIdentity();
+   glLoadIdentity();
    glFlush();
 }
 
@@ -72,9 +67,9 @@ int main(int argc, char** argv) {
 
    glutInit(&argc, argv);          // Initialize GLUT
 
-   glutInitWindowSize(1000, 750);  // Set the window's initial width & height - non-square
+   glutInitWindowSize(950, 730);  // Set the window's initial width & height - non-square
 
-   glutInitWindowPosition(50, 50); // Position the window's initial top-left corner
+   glutInitWindowPosition(300, 50); // Position the window's initial top-left corner
 
    glutCreateWindow("Cyber Space");  // Create window with the given title
 
