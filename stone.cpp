@@ -17,12 +17,10 @@ glEnd();
 glLoadIdentity();
 }
 
-void displayStone() {
-
-glTranslatef(0.0f, -0.8f, 0.0f);
-
-drawStone(0.70f, 0.60f, 0.25f, 0.33,0.34,0.32);
-drawStone(-0.70f, -0.1f, 0.25f, 0.33,0.34,0.32);
-
+void displayStone(GLfloat posLeftStnHorizoneVal,GLfloat leftStn,GLfloat rightStn)
+{
+    glLoadIdentity();
+    drawStone(0.70f, rightStn, 0.20f, 0.33,0.34,0.32);
+    drawStone(posLeftStnHorizoneVal, leftStn, 0.13f, 0.33,0.34,0.32);
 }
 
