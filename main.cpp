@@ -1,6 +1,8 @@
 #include <windows.h>
 #include <GL/glut.h>
 #include <math.h>
+#include "star.cpp"
+#include "cloud.cpp"
 
 
 void initGL() {
@@ -9,32 +11,18 @@ void initGL() {
    glClearColor(0.02f, 0.050f, 0.1f, 0.41f);
 
 }
-
-void drawCircle(double x,double y,double radious,float r,float g,float b) {
-float x2,y2;
-float angle;
-double radius=radious;
-glColor3f(r, g, b);
-glBegin(GL_POLYGON);
-glVertex2f(x,y);
-
-    for (angle=1.0f;angle<361.0f;angle+=0.2)
-    {
-    x2 = x+sin(angle)*radius;
-    y2 = y+cos(angle)*radius;
-    //glScalef(0.3f,0.3f,0.0f);
-    glVertex2f(x2,y2);
-    }
-    glEnd();
-}
-
 void display() {
 
    glClear(GL_COLOR_BUFFER_BIT);
    glLoadIdentity();
+   displayCloud();
+   glLoadIdentity();
+   displayStar();
+   glLoadIdentity();
 
    //Rocket bottom
    glTranslatef(0.0f, -0.9f, 0.0f);
+
    glBegin(GL_QUADS);
       glColor3f(1.0f, 1.0f, 0.0f);
       glVertex2f(-0.08f, 0.0f);
@@ -99,6 +87,7 @@ void display() {
       glVertex2f(0.12f, 0.0f);
       glVertex2f(0.0f, 0.2f);
    glEnd();
+
 
    glLoadIdentity();
    glFlush();
