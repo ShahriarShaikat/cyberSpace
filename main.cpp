@@ -17,6 +17,56 @@ void initGL() {
 
 
 GLfloat rock_posX = 0.0f;
+GLfloat posLeftStn = 0.9f;
+GLfloat posLeftStnHorizoneVal = -0.1f;
+GLfloat posRightStn = 0.7f;
+
+void update(int value) {
+    bool flag = true;
+    if(posLeftStn < -1.4)
+    {
+        posLeftStn = 1.2f;
+        posLeftStnHorizoneVal = rock_posX;
+    }
+    else{
+        posLeftStn-=0.1f;
+    }
+    //For left box
+    if(posRightStn < -1.4)
+    {
+        posRightStn = 1.2f;
+    }
+    else{
+        posRightStn-=0.19f;
+    }
+
+    //Collition
+    /*if(rock_posX+0.1<=-0.700000 && rock_posX+0.1>=-0.900000 || rock_posX-0.1<=-0.700000 && rock_posX-0.1>=-0.900000)
+    {
+        if(posLeftBox+0.1<=-0.700000 && posLeftBox+0.1>=-0.900000 || posLeftBox-0.1<=-0.700000 && posLeftBox-0.1>=-0.900000)
+        {
+            flag = false;
+            printf("Collision detected for left boxs!\n");
+            leftBoxCollition();
+        }
+    }
+    if(rock_posX+0.1>=0.700000 && rock_posX+0.1<=0.900000 || rock_posX-0.1>=0.700000 && rock_posX-0.1<=0.900000)
+    {
+        if(posRightBox+0.1<=-0.700000 && posRightBox+0.1>=-0.900000 || posRightBox-0.1<=-0.700000 && posRightBox-0.1>=-0.900000)
+        {
+            flag = false;
+            printf("Collision detected for right boxs!\n");
+            rightBoxCollition();
+        }
+    }*/
+
+
+	glutPostRedisplay();
+	if(flag)
+    {
+        glutTimerFunc(100, update, 0);
+    }
+}
 void handleKeypress(unsigned char key, int x, int y) {
 	switch (key)
 	{
@@ -43,7 +93,8 @@ void display() {
    glLoadIdentity();
    displayStar();
    glLoadIdentity();
-   displayStone();
+   displayStone(posLeftStnHorizoneVal,posLeftStn,posRightStn);
+   glLoadIdentity();
    rocketShow(rock_posX);
 
    glFlush();
@@ -65,6 +116,8 @@ int main(int argc, char** argv) {
    initGL();                       // Our own OpenGL initialization
 
    glutKeyboardFunc(handleKeypress);
+
+   glutTimerFunc(500, update, 0);
 
    glutMainLoop();                 // Enter the infinite event-processing loop
 
