@@ -1,4 +1,6 @@
 #include <windows.h>
+#include<iostream>
+using namespace std;
 #include <GL/glut.h>
 #include <math.h>
 #include "star.cpp"
@@ -8,11 +10,31 @@
 
 
 void initGL() {
-
-
    glClearColor(0.02f, 0.050f, 0.1f, 0.41f);
-
 }
+
+
+
+
+GLfloat rock_posX = 0.0f;
+void handleKeypress(unsigned char key, int x, int y) {
+	switch (key)
+	{
+        case 'a':
+            if(rock_posX>-0.9)
+            rock_posX -= 0.15f;
+            //printf("(%f,%f)\n",rock_posX-0.1,rock_posX+0.1);
+            break;
+        case 'd':
+            if(rock_posX<0.9)
+            rock_posX += 0.15f;
+            //printf("(%f,%f)\n",rock_posX-0.1,rock_posX+0.1);
+            break;
+
+
+	}glutPostRedisplay();
+}
+
 void display() {
 
    glClear(GL_COLOR_BUFFER_BIT);
@@ -21,9 +43,13 @@ void display() {
    glLoadIdentity();
    displayStar();
    glLoadIdentity();
+<<<<<<< HEAD
    rocketShow();
    glLoadIdentity();
    displayStone();
+=======
+   rocketShow(rock_posX);
+>>>>>>> fe26cb05e81d184056225dd69f0bf60ebf241000
 
    glFlush();
 }
@@ -42,6 +68,8 @@ int main(int argc, char** argv) {
    glutDisplayFunc(display);      // Register callback handler for window re-size event
 
    initGL();                       // Our own OpenGL initialization
+
+   glutKeyboardFunc(handleKeypress);
 
    glutMainLoop();                 // Enter the infinite event-processing loop
 
