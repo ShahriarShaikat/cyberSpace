@@ -2,6 +2,7 @@
 #include <GL/glut.h>
 #include <math.h>
 #include "cloud.cpp"
+#include "star.cpp"
 
 
 void initGL() {
@@ -15,6 +16,8 @@ void display() {
    glClear(GL_COLOR_BUFFER_BIT);
    glLoadIdentity();
    displayCloud();
+   glLoadIdentity();
+   displayStar();
    glLoadIdentity();
 
    //Rocket bottom
