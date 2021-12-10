@@ -109,7 +109,7 @@ int main(int argc, char** argv) {
 
    glutInit(&argc, argv);          // Initialize GLUT
 
-   glutInitWindowSize(950, 730);  // Set the window's initial width & height - non-square
+   glutInitWindowSize(920, 730);  // Set the window's initial width & height - non-square
 
    glutInitWindowPosition(300, 50); // Position the window's initial top-left corner
 
