@@ -1,8 +1,8 @@
 #include <windows.h>
 #include <GL/glut.h>
 #include <math.h>
+#include "star.cpp"
 #include "cloud.cpp"
-//#include "star.cpp"
 
 
 void initGL() {
@@ -15,9 +15,9 @@ void display() {
 
    glClear(GL_COLOR_BUFFER_BIT);
    glLoadIdentity();
-   displayCloud();
+   displayStar();
    glLoadIdentity();
-//   displayStar();
+//   displayCloud();
 //   glLoadIdentity();
 
    //Rocket bottom
