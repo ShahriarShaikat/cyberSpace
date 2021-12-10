@@ -4,6 +4,7 @@
 #include "star.cpp"
 #include "cloud.cpp"
 #include "rocket.cpp"
+#include "stone.cpp"
 
 
 void initGL() {
@@ -21,6 +22,8 @@ void display() {
    displayStar();
    glLoadIdentity();
    rocketShow();
+   glLoadIdentity();
+   displayStone();
 
    glFlush();
 }
