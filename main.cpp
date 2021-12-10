@@ -17,7 +17,7 @@ void initGL() {
 
 
 GLfloat strMove = 0.00f;
-bool signal = true;
+int signal = 1;
 
 GLfloat rock_posX = 0.0f;
 GLfloat posLeftStn = 0.9f;
@@ -28,14 +28,14 @@ void update(int value) {
     bool flag = true;
 
     //For Star Movement
-    if(signal == true)
+    if(signal == 1)
     {
-        if(strMove>=0.04){signal=false;}
+        if(strMove>=0.04){signal=2;}
         strMove+=0.001f;
     }
-    else if (signal == false)
+    else if (signal == 2)
     {
-        if(strMove<=0.0){signal=true;}
+        if(strMove<=0.0){signal=1;}
         strMove-=0.001f;
     }
     //For left stone
