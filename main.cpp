@@ -21,12 +21,12 @@ void handleKeypress(unsigned char key, int x, int y) {
 	switch (key)
 	{
         case 'a':
-            if(rock_posX>-0.9)
+            if(rock_posX>-0.8)
             rock_posX -= 0.15f;
             //printf("(%f,%f)\n",rock_posX-0.1,rock_posX+0.1);
             break;
         case 'd':
-            if(rock_posX<0.9)
+            if(rock_posX<0.8)
             rock_posX += 0.15f;
             //printf("(%f,%f)\n",rock_posX-0.1,rock_posX+0.1);
             break;
