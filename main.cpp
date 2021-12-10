@@ -6,6 +6,7 @@ using namespace std;
 #include "star.cpp"
 #include "cloud.cpp"
 #include "rocket.cpp"
+#include "stone.cpp"
 
 
 void initGL() {
@@ -42,7 +43,13 @@ void display() {
    glLoadIdentity();
    displayStar();
    glLoadIdentity();
+<<<<<<< HEAD
+   rocketShow();
+   glLoadIdentity();
+   displayStone();
+=======
    rocketShow(rock_posX);
+>>>>>>> fe26cb05e81d184056225dd69f0bf60ebf241000
 
    glFlush();
 }
