@@ -16,6 +16,9 @@ void initGL() {
 
 
 
+GLfloat strMove = 0.00f;
+bool signal = true;
+
 GLfloat rock_posX = 0.0f;
 GLfloat posLeftStn = 0.9f;
 GLfloat posLeftStnHorizoneVal = -0.1f;
@@ -23,6 +26,19 @@ GLfloat posRightStn = 0.7f;
 
 void update(int value) {
     bool flag = true;
+
+    //For Star Movement
+    if(signal == true)
+    {
+        if(strMove>=0.04){signal=false;}
+        strMove+=0.001f;
+    }
+    else if (signal == false)
+    {
+        if(strMove<=0.0){signal=true;}
+        strMove-=0.001f;
+    }
+    //For left stone
     if(posLeftStn < -1.4)
     {
         posLeftStn = 1.2f;
@@ -31,7 +47,7 @@ void update(int value) {
     else{
         posLeftStn-=0.1f;
     }
-    //For left box
+    //For right stone
     if(posRightStn < -1.4)
     {
         posRightStn = 1.2f;
@@ -91,7 +107,7 @@ void display() {
    glLoadIdentity();
    displayCloud();
    glLoadIdentity();
-   displayStar();
+   displayStar(strMove);
    glLoadIdentity();
    displayStone(posLeftStnHorizoneVal,posLeftStn,posRightStn);
    glLoadIdentity();
