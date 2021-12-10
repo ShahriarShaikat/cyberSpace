@@ -2,7 +2,7 @@
 #include <GL/glut.h>
 #include <math.h>
 #include "cloud.cpp"
-#include "star.cpp"
+//#include "star.cpp"
 
 
 void initGL() {
@@ -17,8 +17,8 @@ void display() {
    glLoadIdentity();
    displayCloud();
    glLoadIdentity();
-   displayStar();
-   glLoadIdentity();
+//   displayStar();
+//   glLoadIdentity();
 
    //Rocket bottom
    glTranslatef(0.0f, -0.9f, 0.0f);
