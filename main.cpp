@@ -11,39 +11,37 @@ void initGL() {
 
 }
 
-<<<<<<< HEAD
-=======
-void drawCircle(double x,double y,double radious,float r,float g,float b) {
-float x2,y2;
-float angle;
-double radius=radious;
-glColor3f(r, g, b);
-glBegin(GL_POLYGON);
-glVertex2f(x,y);
-
-    for (angle=1.0f;angle<361.0f;angle+=0.2)
-    {
-    x2 = x+sin(angle)*radius;
-    y2 = y+cos(angle)*radius;
-    //glScalef(0.3f,0.3f,0.0f);
-    glVertex2f(x2,y2);
-    }
-    glEnd();
-}
-
->>>>>>> dbeb90bb0cab507d980e1e8b00c1afdeb854d8e9
+//<<<<<<< HEAD
+//=======
+//void drawCircle(double x,double y,double radious,float r,float g,float b) {
+//float x2,y2;
+//float angle;
+//double radius=radious;
+//glColor3f(r, g, b);
+//glBegin(GL_POLYGON);
+//glVertex2f(x,y);
+//
+//    for (angle=1.0f;angle<361.0f;angle+=0.2)
+//    {
+//    x2 = x+sin(angle)*radius;
+//    y2 = y+cos(angle)*radius;
+//    //glScalef(0.3f,0.3f,0.0f);
+//    glVertex2f(x2,y2);
+//    }
+//    glEnd();
+//}
+//
+//>>>>>>> dbeb90bb0cab507d980e1e8b00c1afdeb854d8e9
 void display() {
 
    glClear(GL_COLOR_BUFFER_BIT);
    glLoadIdentity();
-<<<<<<< HEAD
    displayCloud();
    glLoadIdentity();
 
-=======
+//=======
 
    //Rocket bottom
->>>>>>> dbeb90bb0cab507d980e1e8b00c1afdeb854d8e9
    glTranslatef(0.0f, -0.9f, 0.0f);
 
    glBegin(GL_QUADS);
