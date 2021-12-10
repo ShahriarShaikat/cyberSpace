@@ -23,13 +23,13 @@ void displayCloud() {
    //glClear(GL_COLOR_BUFFER_BIT);
    //glLoadIdentity();
 
-glTranslatef(0.0f, -0.9f, 0.0f);
+glTranslatef(0.0f, -0.8f, 0.0f);
 
-drawCircle(0.0f, -0.1f, 0.7f, 0.12,0.20,0.41);
-drawCircle(-0.9f, -0.1f, 0.7f, 0.12,0.20,0.41);
-drawCircle(0.8f, -0.1f, 0.7f, 0.12,0.20,0.41);
-//drawCircle(0.10f, -0.1f, 0.7f, 255,240,245);
-//drawCircle(-0.10f, -0.10f, 0.7f, 255,240,245);
+drawCircle(0.0f, -0.6f, 0.7f, 0.12,0.20,0.41);
+drawCircle(-0.9f, -0.6f, 0.7f, 0.12,0.20,0.41);
+drawCircle(0.8f, -0.6f, 0.7f, 0.12,0.20,0.41);
+//drawCircle(0.3f, -0.4f, 0.7f, 0.02,0.12,0.15);
+//drawCircle(-0.2f, -0.4f, 0.7f, 0.02,0.12,0.15);
 //drawCircle(-0.10f, -0.1f, 0.7f, 255,240,245);
 //drawCircle(-0.1f, -0.1f, 0.7f, 255,240,245);
 }

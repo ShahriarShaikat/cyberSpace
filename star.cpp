@@ -3,7 +3,7 @@ void displayStar() {
     glLoadIdentity();
 
     glTranslatef(0.5f, 0.6f, 0.0f);
-    glScalef(0.1f,0.1f,0.0f);
+    glScalef(0.2f,0.2f,0.0f);
     glBegin (GL_POLYGON);
         glColor3f(0.92, 0.65, 0.49);
         glVertex2f(0.0f,0.2f);
