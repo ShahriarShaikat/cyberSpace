@@ -13,7 +13,7 @@ using namespace std;
 #include "rocket.cpp"
 #include "stone.cpp"
 #include "points.cpp"
-
+#include "satelite.cpp"
 
 float RandomFloat(float min, float max){
    return ((max - min) * ((float)rand() / RAND_MAX)) + min;
@@ -83,17 +83,17 @@ void update(int value) {
     if(newSignal == true)
     {
         if(strMove>=0.04){newSignal=false;}
-        strMove+=0.001f;
+        strMove+=0.002f;
     }
     else if (newSignal == false)
     {
         if(strMove<=0.0){newSignal=true;}
-        strMove-=0.001f;
+        strMove-=0.002f;
     }
     //For bonus box
     if(bonusBOxY < -1.4)
     {
-        bonusBOxY = 2.5f;
+        bonusBOxY = 4.5f;
         //bonusBOxX = rock_posX-0.1;
         cout << RandomFloat(-0.9, 0.9);
         bonusBOxX =   RandomFloat(-0.9, 0.9);
@@ -158,7 +158,7 @@ void update(int value) {
             //PlaySound("sound.wav", NULL, SND_ASYNC|SND_FILENAME|SND_LOOP);
             score+=5;
             //bonusBOxY = 2.5f;
-             bonusBOxY = 2.5f;
+             bonusBOxY = 10.5f;
              bonusBOxX =   RandomFloat(-0.9, 0.9);
             cout<<"Collision detected for bonus box!"<<endl;
 
@@ -210,6 +210,8 @@ void display() {
    glLoadIdentity();
    displayBonusBox(bonusBOxX,bonusBOxY);
    glLoadIdentity();
+
+   displaySatelite(0.7, 0.5);
    rocketShow(rock_posX);
    showText(score);
    if(gameOver==true)
