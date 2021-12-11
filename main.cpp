@@ -83,12 +83,12 @@ void update(int value) {
     if(newSignal == true)
     {
         if(strMove>=0.04){newSignal=false;}
-        strMove+=0.001f;
+        strMove+=0.002f;
     }
     else if (newSignal == false)
     {
         if(strMove<=0.0){newSignal=true;}
-        strMove-=0.001f;
+        strMove-=0.002f;
     }
     //For bonus box
     if(bonusBOxY < -1.4)
