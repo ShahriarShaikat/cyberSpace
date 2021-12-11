@@ -1,8 +1,13 @@
 #include <windows.h>
-#include<iostream>
+#include <MMSystem.h>
+#include <iostream>
+//#include<string>
+//#include <boost/lexical_cast.hpp>
+#include <sstream>
 using namespace std;
 #include <GL/glut.h>
 #include <math.h>
+
 #include "star.cpp"
 #include "cloud.cpp"
 #include "rocket.cpp"
@@ -12,13 +17,33 @@ using namespace std;
 void initGL() {
    glClearColor(0.02f, 0.050f, 0.1f, 0.41f);
 }
-
+void showText(int num)
+{
+   string str;
+   stringstream ss;
+   ss << num;
+   ss >> str;
+   char const *strn = str.c_str();
+   glColor3f (1.0f, 1.0f, 0.0f);
+   glRasterPos2f(-0.95f, 0.9f); //define position on the screen
+   while(*strn)
+   {
+      glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *strn++);
+   }
+}
+void sound()
+{
+    PlaySound("Explosion7.wav", NULL, SND_ASYNC|SND_FILENAME);
+}
+int score=0;
 GLfloat strMove = 0.00f;
 bool newSignal = true;
 
 GLfloat rock_posX = 0.0f;
+
 GLfloat posLeftStn = 0.9f;
 GLfloat posLeftStnHorizoneVal = -0.1f;
+
 GLfloat posRightStn = 0.7f;
 
 void update(int value) {
@@ -39,6 +64,7 @@ void update(int value) {
     if(posLeftStn < -1.4)
     {
         posLeftStn = 1.2f;
+        score++;
         posLeftStnHorizoneVal = rock_posX;
     }
     else{
@@ -48,30 +74,33 @@ void update(int value) {
     if(posRightStn < -1.4)
     {
         posRightStn = 1.2f;
+        score++;
     }
     else{
         posRightStn-=0.19f;
     }
 
-    //Collition
-    /*if(rock_posX+0.1<=-0.700000 && rock_posX+0.1>=-0.900000 || rock_posX-0.1<=-0.700000 && rock_posX-0.1>=-0.900000)
+    //Collision calculation
+    if(rock_posX+0.1>=0.500000 && rock_posX+0.1<=0.900000 || rock_posX-0.1>=0.500000 && rock_posX-0.1<=0.900000)
     {
-        if(posLeftBox+0.1<=-0.700000 && posLeftBox+0.1>=-0.900000 || posLeftBox-0.1<=-0.700000 && posLeftBox-0.1>=-0.900000)
+        if(posRightStn+0.20<=-0.400000 && posRightStn+0.20>=-0.900000 || posRightStn-0.20<=-0.400000 && posRightStn-0.20>=-0.900000)
         {
+            sound();
             flag = false;
-            printf("Collision detected for left boxs!\n");
-            leftBoxCollition();
+            cout<<"Collision detected for right stone!"<<endl;
+            //leftBoxCollition();
         }
     }
-    if(rock_posX+0.1>=0.700000 && rock_posX+0.1<=0.900000 || rock_posX-0.1>=0.700000 && rock_posX-0.1<=0.900000)
+    if(rock_posX+0.1>=posLeftStnHorizoneVal-0.13 && rock_posX+0.1<=posLeftStnHorizoneVal+0.13 || rock_posX-0.1>=posLeftStnHorizoneVal-0.13 && rock_posX-0.1<=posLeftStnHorizoneVal+0.13)
     {
-        if(posRightBox+0.1<=-0.700000 && posRightBox+0.1>=-0.900000 || posRightBox-0.1<=-0.700000 && posRightBox-0.1>=-0.900000)
+        if(posLeftStn+0.13<=-0.400000 && posLeftStn+0.13>=-0.900000 || posLeftStn-0.13<=-0.400000 && posLeftStn-0.13>=-0.900000)
         {
+            sound();
             flag = false;
-            printf("Collision detected for right boxs!\n");
-            rightBoxCollition();
+            cout<<"Collision detected for left stone!"<<endl;
+            //leftBoxCollition();
         }
-    }*/
+    }
 
 
 	glutPostRedisplay();
@@ -109,7 +138,7 @@ void display() {
    displayStone(posLeftStnHorizoneVal,posLeftStn,posRightStn);
    glLoadIdentity();
    rocketShow(rock_posX);
-
+   showText(score);
    glFlush();
 }
 
@@ -131,6 +160,8 @@ int main(int argc, char** argv) {
    glutKeyboardFunc(handleKeypress);
 
    glutTimerFunc(500, update, 0);
+
+   PlaySound("sound.wav", NULL, SND_ASYNC|SND_FILENAME|SND_LOOP);
 
    glutMainLoop();                 // Enter the infinite event-processing loop
 
