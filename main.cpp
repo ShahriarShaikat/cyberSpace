@@ -14,6 +14,11 @@ using namespace std;
 #include "stone.cpp"
 #include "points.cpp"
 
+
+float RandomFloat(float min, float max){
+   return ((max - min) * ((float)rand() / RAND_MAX)) + min;
+}
+
 void initGL() {
    glClearColor(0.02f, 0.050f, 0.1f, 0.41f);
 }
@@ -69,6 +74,7 @@ GLfloat posLeftStnHorizoneVal = -0.1f;
 
 GLfloat posRightStn = 0.7f;
 
+
 void update(int value) {
     bool flag = true;
 
@@ -87,7 +93,10 @@ void update(int value) {
     if(bonusBOxY < -1.4)
     {
         bonusBOxY = 2.5f;
-        bonusBOxX = rock_posX-0.1;
+        //bonusBOxX = rock_posX-0.1;
+        cout << RandomFloat(-0.9, 0.9);
+        bonusBOxX =   RandomFloat(-0.9, 0.9);
+
     }
     else{
         bonusBOxY-=0.12f;
@@ -105,6 +114,7 @@ void update(int value) {
     //For right stone
     if(posRightStn < -1.4)
     {
+
         posRightStn = 1.2f;
         score++;
     }
@@ -145,8 +155,11 @@ void update(int value) {
             //PlaySound("bonus.wav", NULL, SND_ASYNC|SND_FILENAME);
             //PlaySound("sound.wav", NULL, SND_ASYNC|SND_FILENAME|SND_LOOP);
             score+=5;
-            bonusBOxY = 2.5f;
+            //bonusBOxY = 2.5f;
+             bonusBOxY = 2.5f;
+             bonusBOxX =   RandomFloat(-0.9, 0.9);
             cout<<"Collision detected for bonus box!"<<endl;
+
             //leftBoxCollition();
         }
     }
