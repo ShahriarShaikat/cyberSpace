@@ -12,7 +12,7 @@ using namespace std;
 #include "cloud.cpp"
 #include "rocket.cpp"
 #include "stone.cpp"
-
+#include "points.cpp"
 
 void initGL() {
    glClearColor(0.02f, 0.050f, 0.1f, 0.41f);
@@ -184,6 +184,8 @@ void handleKeypress(unsigned char key, int x, int y) {
 void display() {
 
    glClear(GL_COLOR_BUFFER_BIT);
+   glLoadIdentity();
+   displayPoints();
    glLoadIdentity();
    displayCloud();
    glLoadIdentity();
