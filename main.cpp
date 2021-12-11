@@ -7,7 +7,7 @@
 using namespace std;
 #include <GL/glut.h>
 #include <math.h>
-
+#include "bonusBox.cpp"
 #include "star.cpp"
 #include "cloud.cpp"
 #include "rocket.cpp"
@@ -17,6 +17,20 @@ using namespace std;
 void initGL() {
    glClearColor(0.02f, 0.050f, 0.1f, 0.41f);
 }
+
+void gameOverFN()
+{
+   char const *strn = "GAME OVER";
+   glScalef(0.5f,0.5f,0.0f);
+   glColor3f (1.0f, 1.0f, 0.0f);
+   glLoadIdentity();
+   glRasterPos2f(-0.1f, 0.0f); //define position on the screen
+   while(*strn)
+   {
+      glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *strn++);
+   }
+}
+
 void showText(int num)
 {
    string str;
@@ -35,11 +49,20 @@ void sound()
 {
     PlaySound("Explosion7.wav", NULL, SND_ASYNC|SND_FILENAME);
 }
+
+
+
+
+bool gameOver= false;
 int score=0;
 GLfloat strMove = 0.00f;
 bool newSignal = true;
 
 GLfloat rock_posX = 0.0f;
+
+
+GLfloat bonusBOxX = 0.0f;
+GLfloat bonusBOxY = 2.5f;
 
 GLfloat posLeftStn = 0.9f;
 GLfloat posLeftStnHorizoneVal = -0.1f;
@@ -59,6 +82,15 @@ void update(int value) {
     {
         if(strMove<=0.0){newSignal=true;}
         strMove-=0.001f;
+    }
+    //For bonus box
+    if(bonusBOxY < -1.4)
+    {
+        bonusBOxY = 2.5f;
+        bonusBOxX = rock_posX-0.1;
+    }
+    else{
+        bonusBOxY-=0.12f;
     }
     //For left stone
     if(posLeftStn < -1.4)
@@ -87,6 +119,8 @@ void update(int value) {
         {
             sound();
             flag = false;
+            gameOver = true;
+            //gameOverFN();
             cout<<"Collision detected for right stone!"<<endl;
             //leftBoxCollition();
         }
@@ -97,7 +131,22 @@ void update(int value) {
         {
             sound();
             flag = false;
+            gameOver = true;
+            //gameOverFN();
             cout<<"Collision detected for left stone!"<<endl;
+            //leftBoxCollition();
+        }
+    }
+    if(rock_posX-0.1<=bonusBOxX-0.06 && rock_posX+0.1>=bonusBOxX-0.06 || rock_posX-0.1<=bonusBOxX+0.06 && rock_posX+0.1>=bonusBOxX+0.06)
+    {
+        if(bonusBOxY+0.06<=-0.400000 && bonusBOxY+0.06>=-0.900000 || bonusBOxY-0.06<=-0.400000 && bonusBOxY-0.06>=-0.900000)
+        {
+            //sound(bonus.wav);
+            //PlaySound("bonus.wav", NULL, SND_ASYNC|SND_FILENAME);
+            //PlaySound("sound.wav", NULL, SND_ASYNC|SND_FILENAME|SND_LOOP);
+            score+=5;
+            bonusBOxY = 2.5f;
+            cout<<"Collision detected for bonus box!"<<endl;
             //leftBoxCollition();
         }
     }
@@ -110,21 +159,26 @@ void update(int value) {
     }
 }
 void handleKeypress(unsigned char key, int x, int y) {
-	switch (key)
-	{
-        case 'a':
-            if(rock_posX>-0.8)
-            rock_posX -= 0.15f;
-            //printf("(%f,%f)\n",rock_posX-0.1,rock_posX+0.1);
-            break;
-        case 'd':
-            if(rock_posX<0.8)
-            rock_posX += 0.15f;
-            //printf("(%f,%f)\n",rock_posX-0.1,rock_posX+0.1);
-            break;
+    if(gameOver == false)
+    {
+        switch (key)
+        {
+            case 'a':
+                if(rock_posX>-0.8)
+                rock_posX -= 0.15f;
+                //printf("(%f,%f)\n",rock_posX-0.1,rock_posX+0.1);
+                break;
+            case 'd':
+                if(rock_posX<0.8)
+                rock_posX += 0.15f;
+                //printf("(%f,%f)\n",rock_posX-0.1,rock_posX+0.1);
+                break;
 
 
-	}glutPostRedisplay();
+        }
+        glutPostRedisplay();
+    }
+
 }
 
 void display() {
@@ -137,8 +191,14 @@ void display() {
    glLoadIdentity();
    displayStone(posLeftStnHorizoneVal,posLeftStn,posRightStn);
    glLoadIdentity();
+   displayBonusBox(bonusBOxX,bonusBOxY);
+   glLoadIdentity();
    rocketShow(rock_posX);
    showText(score);
+   if(gameOver==true)
+   {
+       gameOverFN();
+   }
    glFlush();
 }
 
