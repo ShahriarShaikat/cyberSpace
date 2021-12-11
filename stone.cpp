@@ -17,10 +17,10 @@ glEnd();
 glLoadIdentity();
 }
 
-void displayStone(GLfloat posLeftStnHorizoneVal,GLfloat leftStn,GLfloat rightStn)
+void displayStone(GLfloat posLeftStnHorizoneVal,GLfloat leftStn,GLfloat rightStn,GLfloat posRightStnX)
 {
     glLoadIdentity();
-    drawStone(0.70f, rightStn, 0.20f, 0.33,0.34,0.32);
+    drawStone(posRightStnX, rightStn, 0.20f, 0.33,0.34,0.32);
     drawStone(posLeftStnHorizoneVal, leftStn, 0.13f, 0.33,0.34,0.32);
 }
 

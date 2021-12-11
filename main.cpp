@@ -73,6 +73,7 @@ GLfloat posLeftStn = 0.9f;
 GLfloat posLeftStnHorizoneVal = -0.1f;
 
 GLfloat posRightStn = 0.7f;
+GLfloat posRightStnX = 0.7f;
 
 
 void update(int value) {
@@ -82,17 +83,17 @@ void update(int value) {
     if(newSignal == true)
     {
         if(strMove>=0.04){newSignal=false;}
-        strMove+=0.001f;
+        strMove+=0.002f;
     }
     else if (newSignal == false)
     {
         if(strMove<=0.0){newSignal=true;}
-        strMove-=0.001f;
+        strMove-=0.002f;
     }
     //For bonus box
     if(bonusBOxY < -1.4)
     {
-        bonusBOxY = 2.5f;
+        bonusBOxY = 4.5f;
         //bonusBOxX = rock_posX-0.1;
         cout << RandomFloat(-0.9, 0.9);
         bonusBOxX =   RandomFloat(-0.9, 0.9);
@@ -116,14 +117,15 @@ void update(int value) {
     {
 
         posRightStn = 1.2f;
+        posRightStnX = RandomFloat(-0.9, 0.9);
         score++;
     }
     else{
-        posRightStn-=0.19f;
+        posRightStn-=0.08f;
     }
 
     //Collision calculation
-    if(rock_posX+0.1>=0.500000 && rock_posX+0.1<=0.900000 || rock_posX-0.1>=0.500000 && rock_posX-0.1<=0.900000)
+    if(rock_posX+0.1>=posRightStnX-0.20 && rock_posX+0.1<=posRightStnX+0.20 || rock_posX-0.1>=posRightStnX-0.20 && rock_posX-0.1<=posRightStnX+0.20)
     {
         if(posRightStn+0.20<=-0.400000 && posRightStn+0.20>=-0.900000 || posRightStn-0.20<=-0.400000 && posRightStn-0.20>=-0.900000)
         {
@@ -156,7 +158,7 @@ void update(int value) {
             //PlaySound("sound.wav", NULL, SND_ASYNC|SND_FILENAME|SND_LOOP);
             score+=5;
             //bonusBOxY = 2.5f;
-             bonusBOxY = 2.5f;
+             bonusBOxY = 10.5f;
              bonusBOxX =   RandomFloat(-0.9, 0.9);
             cout<<"Collision detected for bonus box!"<<endl;
 
@@ -204,7 +206,7 @@ void display() {
    glLoadIdentity();
    displayStar(strMove);
    glLoadIdentity();
-   displayStone(posLeftStnHorizoneVal,posLeftStn,posRightStn);
+   displayStone(posLeftStnHorizoneVal,posLeftStn,posRightStn,posRightStnX);
    glLoadIdentity();
    displayBonusBox(bonusBOxX,bonusBOxY);
    glLoadIdentity();
