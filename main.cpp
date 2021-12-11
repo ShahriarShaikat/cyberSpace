@@ -13,7 +13,7 @@ using namespace std;
 #include "rocket.cpp"
 #include "stone.cpp"
 #include "points.cpp"
-
+#include "satelite.cpp"
 
 float RandomFloat(float min, float max){
    return ((max - min) * ((float)rand() / RAND_MAX)) + min;
@@ -208,6 +208,8 @@ void display() {
    glLoadIdentity();
    displayBonusBox(bonusBOxX,bonusBOxY);
    glLoadIdentity();
+
+   displaySatelite(0.7, 0.5);
    rocketShow(rock_posX);
    showText(score);
    if(gameOver==true)
