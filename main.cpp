@@ -7,7 +7,7 @@
 using namespace std;
 #include <GL/glut.h>
 #include <math.h>
-
+#include "bonusBox.cpp"
 #include "star.cpp"
 #include "cloud.cpp"
 #include "rocket.cpp"
@@ -134,6 +134,8 @@ void display() {
    displayCloud();
    glLoadIdentity();
    displayStar(strMove);
+   glLoadIdentity();
+   displayBonusBox();
    glLoadIdentity();
    displayStone(posLeftStnHorizoneVal,posLeftStn,posRightStn);
    glLoadIdentity();
