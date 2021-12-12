@@ -42,9 +42,16 @@ void showText(int num)
    stringstream ss;
    ss << num;
    ss >> str;
+   char const *scrT = "Score: ";
+   glColor3f (1.0f, 1.0f, 0.0f);
+   glRasterPos2f(-0.98f, 0.88f); //define position on the screen
+   while(*scrT)
+   {
+      glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *scrT++);
+   }
    char const *strn = str.c_str();
    glColor3f (1.0f, 1.0f, 0.0f);
-   glRasterPos2f(-0.95f, 0.9f); //define position on the screen
+   glRasterPos2f(-0.85f, 0.88f); //define position on the screen
    while(*strn)
    {
       glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *strn++);
@@ -55,7 +62,8 @@ void sound()
     PlaySound("Explosion7.wav", NULL, SND_ASYNC|SND_FILENAME);
 }
 
-
+GLfloat satX = 1.4f;
+GLfloat satY = -0.4f;
 
 
 bool gameOver= false;
@@ -90,12 +98,24 @@ void update(int value) {
         if(strMove<=0.0){newSignal=true;}
         strMove-=0.002f;
     }
+
+        //For satelite
+    if(satX < -1.4)
+    {
+        satX = 1.2f;
+        satY = -0.4f;
+
+    }
+    else{
+        satX -= 0.01f;
+        satY += 0.005f;
+    }
     //For bonus box
     if(bonusBOxY < -1.4)
     {
         bonusBOxY = 4.5f;
         //bonusBOxX = rock_posX-0.1;
-        cout << RandomFloat(-0.9, 0.9);
+        //cout << RandomFloat(-0.9, 0.9);
         bonusBOxX =   RandomFloat(-0.9, 0.9);
 
     }
@@ -202,16 +222,18 @@ void display() {
    glLoadIdentity();
    displayPoints();
    glLoadIdentity();
+   displayStar(strMove);
+   glLoadIdentity();
+   displaySatelite2(-satX, -satY,1.0);
+   glLoadIdentity();
    displayCloud();
    glLoadIdentity();
-   displayStar(strMove);
+   displaySatelite(satX, satY,1.0);
    glLoadIdentity();
    displayStone(posLeftStnHorizoneVal,posLeftStn,posRightStn,posRightStnX);
    glLoadIdentity();
    displayBonusBox(bonusBOxX,bonusBOxY);
    glLoadIdentity();
-
-   displaySatelite(0.7, 0.5);
    rocketShow(rock_posX);
    showText(score);
    if(gameOver==true)
