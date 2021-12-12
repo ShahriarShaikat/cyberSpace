@@ -68,6 +68,11 @@ GLfloat satY = -0.4f;
 
 bool gameOver= false;
 int score=0;
+
+GLfloat lStnSpeed = 0.1f;
+GLfloat rStnSpeed = 0.08f;
+
+
 GLfloat strMove = 0.00f;
 bool newSignal = true;
 
@@ -98,8 +103,12 @@ void update(int value) {
         if(strMove<=0.0){newSignal=true;}
         strMove-=0.002f;
     }
+    //Game Level stat
+    if(score>60) {lStnSpeed = 0.15f;rStnSpeed = 0.11f;}
+    else if(score>40){lStnSpeed = 0.13f;rStnSpeed = 0.10f;}
+    else if(score>20){lStnSpeed = 0.12f;rStnSpeed = 0.09f;}
 
-        //For satelite
+    //For satelite
     if(satX < -1.4)
     {
         satX = 1.2f;
@@ -130,7 +139,7 @@ void update(int value) {
         posLeftStnHorizoneVal = rock_posX;
     }
     else{
-        posLeftStn-=0.1f;
+        posLeftStn-=lStnSpeed;
     }
     //For right stone
     if(posRightStn < -1.4)
@@ -141,7 +150,7 @@ void update(int value) {
         score++;
     }
     else{
-        posRightStn-=0.08f;
+        posRightStn-=rStnSpeed;
     }
 
     //Collision calculation
